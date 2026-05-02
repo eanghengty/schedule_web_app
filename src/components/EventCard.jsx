@@ -13,6 +13,7 @@ const hex2rgba = (hex, alpha) => {
 
 export default function EventCard({ ev, onEdit, onDelete, compact, draggable, onDragStart, isDragging, categoriesMap = {} }) {
   const color = eventColor(ev);
+  const closed = ev.status === 'closed';
   const [hov, setHov] = useState(false);
 
   return (
@@ -26,7 +27,7 @@ export default function EventCard({ ev, onEdit, onDelete, compact, draggable, on
       style={{
         padding: compact ? '6px 10px' : '10px 14px',
         borderLeft: `3px solid ${color}`,
-        opacity: isDragging ? 0.35 : 1,
+        opacity: isDragging ? 0.35 : closed ? 0.55 : 1,
         cursor: draggable ? 'grab' : 'pointer',
         transition: 'opacity .15s, transform .15s, box-shadow .15s',
       }}
@@ -63,10 +64,22 @@ export default function EventCard({ ev, onEdit, onDelete, compact, draggable, on
                 {categoriesMap[ev.categoryId]}
               </span>
             )}
+            {/* Status badge — only shown when closed */}
+            {closed && (
+              <span style={{
+                fontSize: 10, padding: '2px 8px', borderRadius: 99,
+                background: 'rgba(239,68,68,.12)',
+                border: '1px solid rgba(239,68,68,.3)',
+                color: '#ef4444', fontWeight: 600,
+              }}>
+                Closed
+              </span>
+            )}
           </div>
           <p style={{
-            fontWeight: 600, fontSize: 13, color: 'var(--txt)',
+            fontWeight: 600, fontSize: 13, color: closed ? 'var(--txt3)' : 'var(--txt)',
             overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+            textDecoration: closed ? 'line-through' : 'none',
           }}>
             {ev.title}
           </p>

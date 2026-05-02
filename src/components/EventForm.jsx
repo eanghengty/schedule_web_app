@@ -14,6 +14,7 @@ export default function EventForm({ initial, defaultDate, onSave, onClose, event
     color: initial ? eventColor(initial) : DEFAULT_COLOR,
     categoryId: '',
     notes: '',
+    status: 'open',
     ...(initial || {}),
   });
   const [err, setErr] = useState('');
@@ -178,6 +179,31 @@ export default function EventForm({ initial, defaultDate, onSave, onClose, event
                 })}
               </div>
             )}
+          </div>
+
+          {/* Status */}
+          <div>
+            <label style={labelStyle}>Status</label>
+            <div style={{ display: 'flex', gap: 6 }}>
+              {['open', 'closed'].map(val => {
+                const sel = f.status === val;
+                return (
+                  <button key={val} onClick={() => s('status', val)} style={{
+                    fontSize: 12, padding: '4px 16px', borderRadius: 99, cursor: 'pointer',
+                    border: '1px solid var(--border)',
+                    background: sel ? 'var(--bg-raised)' : 'transparent',
+                    color: sel ? (val === 'closed' ? '#ef4444' : '#22c55e') : 'var(--txt3)',
+                    fontWeight: sel ? 700 : 400,
+                    outline: sel ? `2px solid ${val === 'closed' ? '#ef4444' : '#22c55e'}` : 'none',
+                    outlineOffset: 2,
+                    textTransform: 'capitalize',
+                    transition: 'all .15s',
+                  }}>
+                    {val}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           {/* Notes */}

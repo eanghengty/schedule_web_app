@@ -157,6 +157,7 @@ interface Event {
   color: string;        // hex e.g. "#3b82f6" — label colour
   categoryId: string;   // optional — references Category.id (empty string = none)
   notes: string;        // optional
+  status: 'open' | 'closed'; // defaults to 'open'; 'closed' renders title crossed out
 }
 ```
 
@@ -211,6 +212,8 @@ Returns `ev.color` if set, else falls back to legacy `CATS[ev.category].color`, 
 - **Left border**: `3px solid ${color}`
 - **Time pill**: background at 14% opacity, text + border in the colour, with a small filled dot
 - **Category badge**: neutral pill (`--bg-raised` / `--txt2`) showing the category name — shown only if `ev.categoryId` is set and exists in `categoriesMap`
+- **Status badge**: red "Closed" pill shown only when `ev.status === 'closed'`
+- **Closed state**: title is struck through (`text-decoration: line-through`), text dimmed to `--txt3`, card opacity 55%
 
 ### Print
 - `.event-color-pill` and `.event-card` both have `print-color-adjust: exact` — colours print faithfully
@@ -240,7 +243,8 @@ Returns `ev.color` if set, else falls back to legacy `CATS[ev.category].color`, 
 1. **Title required**
 2. **Date required**
 3. **Start time must be before end time** (`startTime < endTime`)
-4. **No time overlap** on the same date — checks all events on `f.date` where `e.id !== f.id` and `f.startTime < e.endTime && f.endTime > e.startTime`
+4. **Status** — Open/Closed toggle pills; defaults to `'open'` on new events; no validation needed
+5. **No time overlap** on the same date — checks all events on `f.date` where `e.id !== f.id` and `f.startTime < e.endTime && f.endTime > e.startTime`
    - Error message names the conflicting event and its time range
 
 ---
