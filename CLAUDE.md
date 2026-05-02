@@ -218,6 +218,7 @@ Returns `ev.color` if set, else falls back to legacy `CATS[ev.category].color`, 
 ### Print
 - `.event-color-pill` and `.event-card` both have `print-color-adjust: exact` — colours print faithfully
 - Print CSS targets only text nodes with `color: black`, not the coloured pill spans
+- In Weekly view, font sizes are scaled down and titles wrap so all 7 columns fit on one landscape page
 
 ---
 
@@ -395,12 +396,22 @@ Import accepts both the wrapped format and bare arrays (for compatibility).
 
 Triggered by `window.print()` via the Export button.
 
+`@page` rule: `size: A4 landscape; margin: 8mm` — forces landscape orientation for the weekly view.
+
 `@media print` rules:
 - `.no-print` → hidden (header, buttons, ThemeToggle)
 - `.print-header` → shown (title + date range + rule)
 - Body → white bg, black text (but NOT on `.event-color-pill` or `.event-card` — colours preserved)
 - `.event-color-pill`, `.event-card` → `print-color-adjust: exact` so label colours and left borders print in colour
 - Animations disabled via `animation: none !important`
+
+### Weekly view single-page print
+The outer scroll wrapper in `WeeklyView.jsx` has class `week-scroll`. Print CSS uses this to:
+- Remove `overflow-x: auto` and `min-width: 840px` so the grid expands to full page width
+- Scale fonts: week-head 8px, day-number 11px, event card text 9px, time pill 8px
+- Allow event titles to wrap (`white-space: normal`) instead of truncating with ellipsis
+- `break-inside: avoid` on `.week-col` and `.event-card` to prevent mid-card page breaks
+- A typical week fits on one A4 landscape page; very event-heavy days may still overflow to a second page
 
 ---
 

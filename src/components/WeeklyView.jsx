@@ -42,7 +42,7 @@ export default function WeeklyView({ events, date, onEdit, onDelete, onAddDay, o
   };
 
   return (
-    <div key={viewKey} style={{ width: '100%', overflowX: 'auto', paddingBottom: 8 }}>
+    <div key={viewKey} className="week-scroll" style={{ width: '100%', overflowX: 'auto', paddingBottom: 8 }}>
     <div className="week-grid anim-left" style={{ minWidth: 840 }}>
       {cols.map((d, i) => {
         const isT      = sameDay(d, today);

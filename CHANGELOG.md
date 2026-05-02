@@ -5,6 +5,17 @@ Format: `[YYYY-MM-DD] — Description`
 
 ---
 
+## [2026-05-02] — Weekly view prints on one landscape page
+
+### Changed
+- `index.css` — `@page` rule sets A4 landscape with 8mm margins
+- `index.css` — print CSS overrides weekly grid: removes `min-width`, collapses gaps, scales down font sizes (week head 8px, day number 11px, event card text 9px, pill 8px)
+- `index.css` — event card titles allow text wrapping in print (overrides `white-space: nowrap`)
+- `index.css` — `break-inside: avoid` on columns and cards to prevent mid-card page breaks
+- `WeeklyView.jsx` — outer scroll wrapper given `week-scroll` class so print CSS can override `overflow` and width
+
+---
+
 ## [2026-05-02] — View-specific content padding
 
 ### Changed
