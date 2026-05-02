@@ -5,6 +5,23 @@ Format: `[YYYY-MM-DD] — Description`
 
 ---
 
+## [2026-05-02] — View-specific content padding
+
+### Changed
+- `App.jsx` — scrollable content wrapper now uses different padding per view:
+  - **Daily / Weekly**: `paddingTop: 135`, horizontal `32px` (two-row header)
+  - **Admin**: `paddingTop: 100`, horizontal `48px` (single-row header, wider side margins)
+
+---
+
+## [2026-05-02] — Fixed content overlap under fixed navbar
+
+### Changed
+- `App.jsx` — `paddingTop` on the scrollable content wrapper increased from `110` to `135` (two-row header: logo row + date nav row); `88` when Admin view is active (date nav hidden, single row only)
+- Fixes the Weekly view day-label row (SUN/MON/TUE…) being hidden behind the fixed header
+
+---
+
 ## [2026-05-02] — Fixed header navbar (sticky to top)
 
 ### Changed

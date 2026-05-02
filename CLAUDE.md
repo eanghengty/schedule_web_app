@@ -437,7 +437,10 @@ Use `<Icon name="material_symbol_name" size={N} />` — no imports needed beyond
 
 ## Common Gotchas
 
-- **Fixed header offset** — the header uses `position: fixed` (not sticky). The scrollable content wrapper has `paddingTop: 110` to prevent content from hiding behind it. If the header height changes, update this value.
+- **Fixed header offset** — the header uses `position: fixed` (not sticky). The scrollable content wrapper uses view-specific padding to prevent content hiding behind it:
+  - Daily / Weekly: `paddingTop: 135`, horizontal `32px` — two-row header (logo row + date nav row)
+  - Admin: `paddingTop: 100`, horizontal `48px` — single-row header (date nav hidden), wider side margin for a settings-area feel
+  - If the header height changes, update these values in `App.jsx`.
 - **Flash of wrong theme** — handled by the inline `<script>` in `index.html` `<head>`. Don't remove it.
 - **Logo text color is in JSX** — `color: theme === 'dark' ? '#0d1117' : '#fff'` — can't be done with a CSS variable alone.
 - **`color-scheme: inherit`** on `input[type="date"]` and `input[type="time"]` — makes browser-native pickers match the current theme.
