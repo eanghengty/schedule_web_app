@@ -1,0 +1,312 @@
+/* ═══════════════════════════════════════════════
+   DARK THEME (default)
+═══════════════════════════════════════════════ */
+:root,
+[data-theme="dark"] {
+  --bg:         #0d1117;
+  --bg-card:    #161b27;
+  --bg-raised:  #1e2536;
+  --border:     #2a3450;
+  --shadow:     rgba(0,0,0,0.38);
+  --txt:        #e8ecf4;
+  --txt2:       #8892b0;
+  --txt3:       #4a5578;
+  --amber:      #f0a500;
+  --amber-dim:  rgba(240,165,0,0.12);
+  --amber-glow: rgba(240,165,0,0.07);
+  --blue-glow:  rgba(96,165,250,0.06);
+  --overlay-bg: rgba(10,14,26,0.82);
+  --work:       #4ade80;  --work-bg:     rgba(74,222,128,0.10);  --work-border:  rgba(74,222,128,0.25);
+  --meet:       #60a5fa;  --meet-bg:     rgba(96,165,250,0.10);  --meet-border:  rgba(96,165,250,0.25);
+  --study:      #c084fc;  --study-bg:    rgba(192,132,252,0.10); --study-border: rgba(192,132,252,0.25);
+  --personal:   #fb923c;  --personal-bg: rgba(251,146,60,0.10);  --personal-border: rgba(251,146,60,0.25);
+  color-scheme: dark;
+}
+
+/* ═══════════════════════════════════════════════
+   LIGHT THEME
+═══════════════════════════════════════════════ */
+[data-theme="light"] {
+  --bg:         #eef2f7;
+  --bg-card:    #ffffff;
+  --bg-raised:  #e2e8f0;
+  --border:     #cbd5e1;
+  --shadow:     rgba(15,23,42,0.10);
+  --txt:        #0f172a;
+  --txt2:       #475569;
+  --txt3:       #94a3b8;
+  --amber:      #d97706;
+  --amber-dim:  rgba(217,119,6,0.12);
+  --amber-glow: rgba(217,119,6,0.07);
+  --blue-glow:  rgba(59,130,246,0.06);
+  --overlay-bg: rgba(15,23,42,0.40);
+  --work:       #059669;  --work-bg:     rgba(5,150,105,0.10);   --work-border:  rgba(5,150,105,0.30);
+  --meet:       #2563eb;  --meet-bg:     rgba(37,99,235,0.10);   --meet-border:  rgba(37,99,235,0.30);
+  --study:      #7c3aed;  --study-bg:    rgba(124,58,237,0.10);  --study-border: rgba(124,58,237,0.30);
+  --personal:   #dc2626;  --personal-bg: rgba(220,38,38,0.10);   --personal-border: rgba(220,38,38,0.30);
+  color-scheme: light;
+}
+
+/* ═══════════════════════════════════════════════
+   MATERIAL SYMBOLS
+═══════════════════════════════════════════════ */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+  user-select: none;
+  line-height: 1;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════
+   BASE RESET & BODY
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--txt);
+  font-family: Tahoma, Geneva, sans-serif;
+  min-height: 100vh;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ═══════════════════════════════════════════════
+   KEYFRAME ANIMATIONS
+═══════════════════════════════════════════════ */
+@keyframes popIn    { from { opacity:0; transform:scale(.84) translateY(-6px) } to { opacity:1; transform:none } }
+@keyframes fadeUp   { from { opacity:0; transform:translateY(12px) }           to { opacity:1; transform:none } }
+@keyframes slideR   { from { opacity:0; transform:translateX(20px) }           to { opacity:1; transform:none } }
+@keyframes slideL   { from { opacity:0; transform:translateX(-20px) }          to { opacity:1; transform:none } }
+@keyframes modalIn  { from { opacity:0; transform:scale(.88) translateY(18px)} to { opacity:1; transform:none } }
+@keyframes overlayIn{ from { opacity:0 }                                        to { opacity:1 } }
+@keyframes themePop { 0%{transform:scale(1)} 40%{transform:scale(1.22)} 100%{transform:scale(1)} }
+
+.anim-pop   { animation: popIn   .24s cubic-bezier(.34,1.56,.64,1) both }
+.anim-up    { animation: fadeUp  .22s cubic-bezier(.16,1,.3,1) both }
+.anim-right { animation: slideR  .22s cubic-bezier(.16,1,.3,1) both }
+.anim-left  { animation: slideL  .22s cubic-bezier(.16,1,.3,1) both }
+.anim-modal { animation: modalIn .26s cubic-bezier(.16,1,.3,1) both }
+
+/* ═══════════════════════════════════════════════
+   CARDS
+═══════════════════════════════════════════════ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* ═══════════════════════════════════════════════
+   CATEGORY COLOURS
+═══════════════════════════════════════════════ */
+.cat-work     { color:var(--work);    background:var(--work-bg);    border:1px solid var(--work-border); }
+.cat-meeting  { color:var(--meet);    background:var(--meet-bg);    border:1px solid var(--meet-border); }
+.cat-study    { color:var(--study);   background:var(--study-bg);   border:1px solid var(--study-border); }
+.cat-personal { color:var(--personal);background:var(--personal-bg);border:1px solid var(--personal-border); }
+.ev-work      { border-left:3px solid var(--work); }
+.ev-meeting   { border-left:3px solid var(--meet); }
+.ev-study     { border-left:3px solid var(--study); }
+.ev-personal  { border-left:3px solid var(--personal); }
+
+/* ═══════════════════════════════════════════════
+   EVENT CARD HOVER
+═══════════════════════════════════════════════ */
+.event-card {
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, background 0.3s ease;
+}
+.event-card:hover { transform: translateY(-2px); box-shadow: 0 8px 28px var(--shadow); }
+[data-theme="light"] .event-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+
+/* ═══════════════════════════════════════════════
+   TODAY BADGE
+═══════════════════════════════════════════════ */
+.today-badge {
+  background: var(--amber-dim);
+  color: var(--amber);
+  border: 1px solid rgba(196,127,0,0.3);
+}
+
+/* ═══════════════════════════════════════════════
+   FORM INPUTS
+═══════════════════════════════════════════════ */
+.inp {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  color: var(--txt);
+  border-radius: 8px;
+  padding: 9px 13px;
+  width: 100%;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s, background 0.3s ease;
+}
+.inp:focus { border-color:var(--amber); box-shadow:0 0 0 3px var(--amber-dim); }
+.inp::placeholder { color:var(--txt3); }
+input[type="date"],
+input[type="time"] { color-scheme: inherit; }
+
+/* ═══════════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════════ */
+.btn-primary {
+  background: var(--amber);
+  color: #fff;
+  font-weight: 600; font-size: 13px; padding: 9px 18px;
+  border-radius: 8px; border: none; cursor: pointer;
+  font-family: Tahoma, Geneva, sans-serif;
+  transition: filter .2s, transform .1s, box-shadow .2s;
+}
+[data-theme="dark"] .btn-primary { color: #0d1117; }
+.btn-primary:hover { filter:brightness(1.1); box-shadow:0 4px 18px var(--amber-dim); transform:translateY(-1px); }
+.btn-primary:active { transform:none; }
+
+.btn-ghost {
+  background: transparent; color: var(--txt2); font-weight: 500;
+  font-size: 13px; padding: 9px 18px; border-radius: 8px;
+  border: 1px solid var(--border); cursor: pointer;
+  font-family: Tahoma, Geneva, sans-serif;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.btn-ghost:hover { background:var(--bg-raised); color:var(--txt); border-color:var(--txt3); }
+
+.btn-icon {
+  background: transparent; color: var(--txt3); font-size: 12px;
+  padding: 4px 8px; border-radius: 6px; border: 1px solid transparent;
+  cursor: pointer; font-family: Tahoma, Geneva, sans-serif; line-height: 1;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.btn-icon:hover { background:rgba(248,113,113,.1); color:#ef4444; border-color:rgba(248,113,113,.3); }
+
+.btn-danger { background:#ef4444 !important; color:white !important; }
+.btn-danger:hover { filter:brightness(1.08); }
+
+/* ═══════════════════════════════════════════════
+   THEME TOGGLE BUTTON
+═══════════════════════════════════════════════ */
+.btn-theme {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 1;
+  transition: background .2s, border-color .2s, transform .15s;
+  display: flex; align-items: center; justify-content: center;
+}
+.btn-theme:hover { background:var(--bg-card); border-color:var(--txt3); transform:scale(1.05); }
+.btn-theme:active { animation: themePop .3s ease; }
+
+/* ═══════════════════════════════════════════════
+   VIEW TABS
+═══════════════════════════════════════════════ */
+.view-tab {
+  padding: 7px 16px; border-radius: 6px; font-size: 13px; font-weight: 500;
+  cursor: pointer; color: var(--txt2); background: transparent;
+  border: 1px solid transparent; font-family: Tahoma, Geneva, sans-serif;
+  transition: all .2s;
+}
+.view-tab.active { background:var(--bg-raised); color:var(--txt); border-color:var(--border); }
+.view-tab:not(.active):hover { color:var(--txt); }
+
+/* ═══════════════════════════════════════════════
+   WEEKLY GRID
+═══════════════════════════════════════════════ */
+.week-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:8px; }
+
+.week-col {
+  border: 1px solid var(--border); border-radius: 8px;
+  min-height: 130px; padding: 8px; background: var(--bg-card);
+  transition: background 0.3s ease, border-color 0.3s ease;
+  min-width: 0; /* prevent grid blowout from long text */
+  overflow: hidden;
+}
+.week-col.is-today { border-color:var(--amber) !important; background:var(--amber-dim) !important; }
+
+.week-head {
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .07em; color: var(--txt3); padding: 8px 0 6px; text-align: center;
+}
+.day-num {
+  font-size: 15px; font-family: Tahoma, Geneva, sans-serif;
+  font-weight: 600; display: inline-block;
+}
+.day-num.today {
+  background: var(--amber-dim); color: var(--amber);
+  border: 1px solid rgba(196,127,0,.3); border-radius: 99px; padding: 2px 8px;
+}
+
+/* ═══════════════════════════════════════════════
+   CATEGORY SELECTOR BUTTONS (in form)
+═══════════════════════════════════════════════ */
+.cat-btn {
+  font-size: 12px; padding: 4px 12px; border-radius: 99px; cursor: pointer;
+  font-family: Tahoma, Geneva, sans-serif; font-weight: 500; border: none;
+  transition: opacity .2s, outline .1s;
+}
+.cat-btn.sel { outline:2px solid var(--amber); outline-offset:2px; opacity:1 !important; }
+.cat-btn:not(.sel) { opacity:.5; }
+.cat-btn:hover { opacity:1; }
+
+/* ═══════════════════════════════════════════════
+   MODAL OVERLAY
+═══════════════════════════════════════════════ */
+.overlay {
+  position: fixed; inset: 0;
+  background: var(--overlay-bg);
+  backdrop-filter: blur(5px);
+  z-index: 50;
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+  animation: overlayIn .18s ease both;
+}
+
+/* ═══════════════════════════════════════════════
+   ADD-DAY BUTTON (weekly columns)
+═══════════════════════════════════════════════ */
+.add-day-btn {
+  width: 100%; font-size: 11px; padding: 5px; border-radius: 6px;
+  border: 1px dashed var(--border); background: transparent;
+  color: var(--txt3); cursor: pointer; margin-top: 4px;
+  font-family: Tahoma, Geneva, sans-serif;
+  transition: color .2s, border-color .2s;
+}
+.add-day-btn:hover { color:var(--amber); border-color:var(--amber); }
+
+/* ═══════════════════════════════════════════════
+   AMBIENT GLOWS
+═══════════════════════════════════════════════ */
+.glow { position:fixed; pointer-events:none; border-radius:50%; filter:blur(90px); }
+
+/* ═══════════════════════════════════════════════
+   SCROLLBAR
+═══════════════════════════════════════════════ */
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+
+/* ═══════════════════════════════════════════════
+   PRINT
+═══════════════════════════════════════════════ */
+@media print {
+  .no-print { display:none !important; }
+  body { background:white !important; color:black !important; }
+  .card, .week-col { background:white !important; border-color:#ccc !important; box-shadow:none !important; }
+  .event-card { transform:none !important; box-shadow:none !important; }
+  .glow { display:none; }
+  /* Reset animations but DO NOT override inline colors — event label pills keep their colour */
+  * { animation:none !important; }
+  /* Only force black on text nodes that don't carry inline color */
+  body, p, span:not(.event-color-pill):not(.event-color-pill *), h1, h2, h3, footer { color:black !important; }
+  /* Print-friendly label pill — keep background & color from inline styles, just ensure border prints */
+  .event-color-pill { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  /* Keep left border colour on event cards */
+  .event-card { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .print-header { display:block !important; }
+}
+.print-header { display:none; }
