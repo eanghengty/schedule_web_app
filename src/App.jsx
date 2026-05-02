@@ -108,16 +108,21 @@ export default function App() {
   return (
     <div style={{
       minHeight: '100vh', background: 'var(--bg)', position: 'relative',
-      overflowX: 'hidden', overflowY: 'auto', transition: 'background 0.3s ease',
+      overflowX: 'hidden', transition: 'background 0.3s ease',
     }}>
       {/* Ambient glows */}
       <div className="glow" style={{ width: 500, height: 500, background: glowA, top: -150, right: -100, opacity: .6 }} />
       <div className="glow" style={{ width: 400, height: 400, background: glowB, bottom: -100, left: -80, opacity: .5 }} />
 
-      <div style={{ position: 'relative', zIndex: 1, width: '100%', padding: '24px 32px 48px' }}>
+      <div style={{ position: 'relative', zIndex: 1, width: '100%' }}>
 
         {/* ── Header ── */}
-        <header className="no-print anim-up" style={{ marginBottom: 32 }}>
+        <header className="no-print anim-up" style={{
+          position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
+          background: 'var(--bg)', backdropFilter: 'blur(12px)',
+          borderBottom: '1px solid var(--border)',
+          padding: '16px 32px 14px',
+        }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12, marginBottom: 18 }}>
 
             {/* Logo + title */}
@@ -191,6 +196,9 @@ export default function App() {
           )}
         </header>
 
+        {/* ── Scrollable content ── */}
+        <div style={{ padding: '24px 32px 48px', paddingTop: 110 }}>
+
         {/* Print-only header */}
         <div className="print-header">
           <h1 style={{ fontFamily: "Tahoma, Geneva, sans-serif", fontSize: 22, marginBottom: 4 }}>Schedule</h1>
@@ -211,6 +219,7 @@ export default function App() {
           {' '}event{events.length !== 1 ? 's' : ''} · saved in IndexedDB ·{' '}
           <span style={{ color: 'var(--txt3)' }}>{theme} mode</span>
         </footer>
+        </div>{/* end scrollable content */}
       </div>
 
       {/* ── Modals ── */}

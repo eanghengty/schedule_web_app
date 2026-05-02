@@ -105,7 +105,7 @@ Personal color in light mode: `#dc2626` (red, not orange)
 
 ```
 App
-├── Header (inline JSX)
+├── Header (inline JSX) — position: fixed, top: 0, full width, z-index: 100
 │   ├── Logo "P" (amber bg, theme-aware text color)
 │   ├── "Today" badge (shown when date = today)
 │   ├── View tabs (Daily / Weekly / Admin)  ← Admin tab has settings icon
@@ -437,6 +437,7 @@ Use `<Icon name="material_symbol_name" size={N} />` — no imports needed beyond
 
 ## Common Gotchas
 
+- **Fixed header offset** — the header uses `position: fixed` (not sticky). The scrollable content wrapper has `paddingTop: 110` to prevent content from hiding behind it. If the header height changes, update this value.
 - **Flash of wrong theme** — handled by the inline `<script>` in `index.html` `<head>`. Don't remove it.
 - **Logo text color is in JSX** — `color: theme === 'dark' ? '#0d1117' : '#fff'` — can't be done with a CSS variable alone.
 - **`color-scheme: inherit`** on `input[type="date"]` and `input[type="time"]` — makes browser-native pickers match the current theme.
