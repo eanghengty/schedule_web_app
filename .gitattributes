@@ -1,0 +1,3 @@
+# Preserve execute permissions for scripts
+node_modules/.bin/* export-ignore
+*.sh export-ignore
